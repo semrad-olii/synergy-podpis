@@ -162,7 +162,7 @@
 
   function render(){
     const name  = esc(nameInput.value);
-    const title = esc(titleInput.value);
+    const title = esc(titleInput.value).toUpperCase();
     const phone = esc(phoneInput.value);
     const web1  = esc(web1Input.value);
     const web2  = esc(web2Input.value);
@@ -173,27 +173,35 @@
   <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
     <tr>
       <td style="padding-right:18px;">
-        <div style="font-size:22px;font-weight:600;margin-bottom:3px;">${name}</div>
-        <div style="font-size:12px;font-weight:400;">${title}</div>
+        <div style="font-size:22px;font-weight:600;margin-bottom:3px;">
+          ${name}
+        </div>
+        <div style="
+          font-size:14px;
+          font-weight:400;
+          letter-spacing:0.6px;
+        ">
+          ${title}
+        </div>
       </td>
       <td style="border-left:2px solid #111;padding:0 18px;"></td>
       <td>
         <table cellpadding="0" cellspacing="0">
           <tr>
             <td style="padding-right:10px;">📞</td>
-            <td style="font-weight:400;"><a href="${asTelHref(phone)}">${phone}</a></td>
+            <td><a href="${asTelHref(phone)}">${phone}</a></td>
           </tr>
           <tr>
             <td style="padding-right:10px;">🌐</td>
-            <td style="font-weight:400;"><a href="${ensureHttps(web1)}">${web1}</a></td>
+            <td><a href="${ensureHttps(web1)}">${web1}</a></td>
           </tr>
           <tr>
             <td style="padding-right:10px;">🔗</td>
-            <td style="font-weight:400;"><a href="${ensureHttps(web2)}">${web2}</a></td>
+            <td><a href="${ensureHttps(web2)}">${web2}</a></td>
           </tr>
           <tr>
             <td style="padding-right:10px;">✉️</td>
-            <td style="font-weight:400;"><a href="mailto:${email}">${email}</a></td>
+            <td><a href="mailto:${email}">${email}</a></td>
           </tr>
         </table>
       </td>
@@ -209,11 +217,11 @@
     htmlOut.value = html;
   }
 
-  const nameInput = document.getElementById("name");
+  const nameInput  = document.getElementById("name");
   const titleInput = document.getElementById("title");
   const phoneInput = document.getElementById("phone");
-  const web1Input = document.getElementById("web1");
-  const web2Input = document.getElementById("web2");
+  const web1Input  = document.getElementById("web1");
+  const web2Input  = document.getElementById("web2");
   const emailInput = document.getElementById("email");
 
   btnGen.onclick = render;
