@@ -5,102 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Synergy – Email Signature Generator</title>
 
+  <!-- Barlow font (UI + fallback for email clients) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 24px;
-      background: #fafafa;
-      color: #111;
+    body{
+      font-family:'Barlow', Arial, Helvetica, sans-serif;
+      margin:24px;
+      background:#fafafa;
+      color:#111;
     }
-
-    h2 {
-      margin-bottom: 16px;
+    h2{margin:0 0 16px 0}
+    .wrap{
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:20px;
+      align-items:start;
     }
-
-    .wrap {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
-      align-items: flex-start;
+    .card{
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:12px;
+      padding:16px;
     }
-
-    .card {
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 12px;
-      padding: 16px;
+    label{
+      display:block;
+      font-size:12px;
+      font-weight:800;
+      margin:12px 0 6px;
     }
-
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      margin: 12px 0 6px;
+    input{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      font-size:14px;
+      font-family:'Barlow', Arial, Helvetica, sans-serif;
     }
-
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 14px;
+    input[readonly]{
+      background:#f5f5f5;
+      color:#333;
+      cursor:not-allowed;
     }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
     }
-
-    .btns {
-      display: flex;
-      gap: 10px;
-      margin-top: 14px;
-      flex-wrap: wrap;
+    .btns{
+      display:flex;
+      gap:10px;
+      margin-top:14px;
+      flex-wrap:wrap;
     }
-
-    button {
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-weight: 700;
+    button{
+      cursor:pointer;
+      border:0;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:800;
+      font-family:'Barlow', Arial, Helvetica, sans-serif;
     }
-
-    .btn-primary {
-      background: #111;
-      color: #fff;
+    .btn-primary{background:#111;color:#fff}
+    .btn-secondary{background:#eee;color:#111}
+    .hint{
+      font-size:12px;
+      color:#555;
+      margin-top:12px;
+      line-height:1.45;
     }
-
-    .btn-secondary {
-      background: #eee;
-      color: #111;
+    .email-preview{
+      background:#fff;
+      border:1px dashed #ccc;
+      border-radius:12px;
+      padding:14px;
+      overflow:auto;
     }
-
-    .hint {
-      font-size: 12px;
-      color: #555;
-      margin-top: 12px;
-      line-height: 1.4;
+    textarea{
+      width:100%;
+      min-height:180px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      padding:12px;
+      font-family:ui-monospace, Menlo, Consolas, monospace;
+      font-size:12px;
+      margin-top:8px;
     }
-
-    .email-preview {
-      background: #fff;
-      border: 1px dashed #ccc;
-      border-radius: 12px;
-      padding: 14px;
-      overflow-x: auto;
+    .inline-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-top:8px;
+      font-size:13px;
+      font-weight:700;
     }
-
-    textarea {
-      width: 100%;
-      min-height: 160px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 12px;
-      font-family: monospace;
-      font-size: 12px;
-      margin-top: 8px;
+    .muted{
+      font-size:12px;
+      color:#666;
+      margin-top:6px;
     }
   </style>
 </head>
@@ -127,23 +131,29 @@
     <label>Telefon</label>
     <input id="phone" value="+420 777 339 287">
 
-    <label>Web Synergy</label>
-    <input id="web1" value="www.synergyrealestate.cz">
+    <label>Web Synergy (zamčeno)</label>
+    <input id="web1" value="www.synergyrealestate.cz" readonly>
 
-    <label>Osobní web</label>
+    <label>Osobní web (volitelné)</label>
     <input id="web2" value="www.honzastepanek.cz">
+
+    <div class="inline-row">
+      <input type="checkbox" id="showWeb2" checked style="width:auto;margin:0;">
+      <span>Zobrazit osobní web</span>
+    </div>
+    <div class="muted">Když vypneš, druhý web se do podpisu nevygeneruje.</div>
 
     <label>Email</label>
     <input id="email" value="jan.stepanek@century21.cz">
 
     <div class="btns">
-      <button class="btn-primary" onclick="render()">Vygenerovat</button>
-      <button class="btn-secondary" onclick="copyRich()">Kopírovat podpis</button>
-      <button class="btn-secondary" onclick="copyHtml()">Kopírovat HTML</button>
+      <button class="btn-primary" id="btnGen">Vygenerovat</button>
+      <button class="btn-secondary" id="btnCopyRich">Kopírovat podpis</button>
+      <button class="btn-secondary" id="btnCopyHtml">Kopírovat HTML</button>
     </div>
 
     <div class="hint">
-      Tip: Pokud Outlook po vložení změní fonty, vkládej podpis přímo do editoru podpisů
+      Tip: Pokud Outlook mění styl po vložení, vkládej podpis přímo do editoru podpisů
       (Outlook → Možnosti → Pošta → Podpisy).
     </div>
   </div>
@@ -153,6 +163,7 @@
     <strong>Náhled podpisu</strong>
     <div id="preview" class="email-preview" style="margin-top:10px;"></div>
 
+    <div style="height:10px;"></div>
     <strong>Kód (HTML)</strong>
     <textarea id="htmlOut" readonly></textarea>
   </div>
@@ -160,76 +171,90 @@
 </div>
 
 <script>
-  const ICON_PHONE = "https://via.placeholder.com/16";
-  const ICON_WEB   = "https://via.placeholder.com/16";
-  const ICON_LINK  = "https://via.placeholder.com/16";
-  const ICON_EMAIL = "https://via.placeholder.com/16";
-  const LOGO_URL   = "https://via.placeholder.com/120x20?text=SYNERGY";
+  // ICONS
+  const ICON_PHONE = "./icons/phone.png";
+  const ICON_WEB   = "./icons/web.png";
+  const ICON_LINK  = "./icons/link.png";
+  const ICON_EMAIL = "./icons/mail.png";
 
-  function esc(text) {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
+  // BANNER (jednotný pro všechny)
+  const BANNER_URL = "https://semrad-olii.github.io/synergy-podpis/synergy-banner.png";
 
-  function ensureHttps(url) {
-    if (!url) return "";
-    if (url.startsWith("http")) return url;
-    return "https://" + url;
-  }
+  const esc = s => String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
 
-  function render() {
-    const name  = esc(document.getElementById("name").value);
-    const title = esc(document.getElementById("title").value.toUpperCase());
-    const phone = esc(document.getElementById("phone").value);
-    const web1  = esc(document.getElementById("web1").value);
-    const web2  = esc(document.getElementById("web2").value);
-    const email = esc(document.getElementById("email").value);
+  const asTelHref = tel => "tel:" + tel.replace(/[^\d+]/g,"");
+  const ensureHttps = url => url.startsWith("http") ? url : "https://" + url;
+
+  function render(){
+    const name  = esc(nameInput.value);
+    const title = esc(titleInput.value.toUpperCase());
+    const phone = esc(phoneInput.value);
+    const web1  = esc(web1Input.value);
+    const web2  = esc(web2Input.value);
+    const email = esc(emailInput.value);
+    const showWeb2 = showWeb2Input.checked;
 
     const html = `
-<table cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;">
-<tr>
-  <td style="padding-right:18px;">
-    <div style="font-size:22px;font-weight:800;">${name}</div>
-    <div style="font-size:12px;font-weight:700;">${title}</div>
-  </td>
-  <td style="border-left:2px solid #111;padding:0 18px;"></td>
-  <td>
-    <div style="font-size:13px;font-weight:700;">📞 ${phone}</div>
-    <div style="font-size:13px;font-weight:700;">
-      🌐 <a href="${ensureHttps(web1)}">${web1}</a>
-    </div>
-    <div style="font-size:13px;font-weight:700;">
-      🔗 <a href="${ensureHttps(web2)}">${web2}</a>
-    </div>
-    <div style="font-size:13px;font-weight:700;">
-      ✉️ <a href="mailto:${email}">${email}</a>
-    </div>
-    <div style="margin-top:10px;">
-      <img src="${LOGO_URL}" alt="Synergy">
-    </div>
-  </td>
-</tr>
-</table>`;
+<div style="font-family:Barlow, Arial, Helvetica, sans-serif;">
+  <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+    <tr>
+      <td style="padding-right:18px;">
+        <div style="font-size:22px;font-weight:800;margin-bottom:3px;">${name}</div>
+        <div style="font-size:12px;font-weight:800;">${title}</div>
+      </td>
+      <td style="border-left:2px solid #111;padding:0 18px;"></td>
+      <td>
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td style="padding-right:10px;"><img src="${ICON_PHONE}" width="16"></td>
+            <td><a href="${asTelHref(phone)}">${phone}</a></td>
+          </tr>
+          <tr>
+            <td style="padding-right:10px;"><img src="${ICON_WEB}" width="16"></td>
+            <td><a href="${ensureHttps(web1)}">${web1}</a></td>
+          </tr>
+          ${showWeb2 ? `
+          <tr>
+            <td style="padding-right:10px;"><img src="${ICON_LINK}" width="16"></td>
+            <td><a href="${ensureHttps(web2)}">${web2}</a></td>
+          </tr>` : ``}
+          <tr>
+            <td style="padding-right:10px;"><img src="${ICON_EMAIL}" width="16"></td>
+            <td><a href="mailto:${email}">${email}</a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 
-    document.getElementById("preview").innerHTML = html;
-    document.getElementById("htmlOut").value = html;
+  <div style="margin-top:14px;">
+    <img src="${BANNER_URL}" width="600" style="max-width:600px;width:100%;display:block;">
+  </div>
+</div>`;
+
+    preview.innerHTML = html;
+    htmlOut.value = html;
   }
 
-  async function copyRich() {
-    const html = document.getElementById("htmlOut").value;
-    const blob = new Blob([html], { type: "text/html" });
-    const data = [new ClipboardItem({ "text/html": blob })];
-    await navigator.clipboard.write(data);
+  const nameInput = document.getElementById("name");
+  const titleInput = document.getElementById("title");
+  const phoneInput = document.getElementById("phone");
+  const web1Input = document.getElementById("web1");
+  const web2Input = document.getElementById("web2");
+  const emailInput = document.getElementById("email");
+  const showWeb2Input = document.getElementById("showWeb2");
+
+  btnGen.onclick = render;
+  btnCopyHtml.onclick = () => navigator.clipboard.writeText(htmlOut.value);
+  btnCopyRich.onclick = async () => {
+    const blob = new Blob([htmlOut.value], { type: "text/html" });
+    await navigator.clipboard.write([new ClipboardItem({ "text/html": blob })]);
     alert("Podpis zkopírován.");
-  }
-
-  async function copyHtml() {
-    await navigator.clipboard.writeText(document.getElementById("htmlOut").value);
-    alert("HTML zkopírováno.");
-  }
+  };
 
   render();
 </script>
