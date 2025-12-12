@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.1">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Lucida Grande'; font-kerning: none}
+    span.s3 {font: 12.0px 'Apple Color Emoji'; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!doctype html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="cs"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Synergy – Signature Generator&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body{font-family:Arial,Helvetica,sans-serif;margin:24px;background:#fafafa;color:#111}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.wrap{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.card{background:#fff;border:1px solid #e6e6e6;border-radius:12px;padding:16px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>label{display:block;font-size:12px;font-weight:700;margin:10px 0 6px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:10px;font-size:14px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button{cursor:pointer;border:0;border-radius:12px;padding:10px 12px;font-weight:800}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-primary{background:#111;color:#fff}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btn-secondary{background:#eee;color:#111}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.hint{font-size:12px;color:#555;line-height:1.4;margin-top:10px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.preview-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>textarea{width:100%;min-height:160px;border:1px solid #ddd;border-radius:12px;padding:12px;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;font-size:12px}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* email-preview container */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.email-preview{background:#fff;border:1px dashed #cfcfcf;border-radius:12px;padding:14px;overflow:auto}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;h2&gt;Synergy Real Estate – Email Signature Generator&lt;/h2&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;div class="wrap"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="row"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;Jméno a příjmení&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input id="name" placeholder="Honza Štěpánek" value="Honza Štěpánek" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;Pozice&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input id="title" placeholder="Ředitel společnosti" value="Ředitel společnosti" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;Telefon&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input id="phone" placeholder="+420 777 339 287" value="+420 777 339 287" /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;Web 1&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input id="web1" placeholder="www.synergyrealestate.cz" value="www.synergyrealestate.cz" /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;Web 2&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input id="web2" placeholder="www.honzastepanek.cz" value="www.honzastepanek.cz" /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;label&gt;Email&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;input id="email" placeholder="jan.stepanek@century21.cz" value="jan.stepanek@century21.cz" /&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="btns"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="btn-primary" id="btnGen"&gt;Vygenerovat&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="btn-secondary" id="btnCopyRich"&gt;Kopírovat podpis&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button class="btn-secondary" id="btnCopyHtml"&gt;Kopírovat HTML&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="hint"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;b&gt;Tip:&lt;/b&gt; Pokud Outlook po vložení změní fonty, vlož podpis přímo do editoru podpisu</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>(Outlook </span><span class="s2">→</span><span class="s1"> Soubor </span><span class="s2">→</span><span class="s1"> Možnosti </span><span class="s2">→</span><span class="s1"> Pošta </span><span class="s2">→</span><span class="s1"> Podpisy) a použij tlačítko „Kopírovat podpis“.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="card"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="preview-title"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;strong&gt;Náhled podpisu&lt;/strong&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;span style="font-size:12px;color:#666;"&gt;1 kamera = 0 </span><span class="s3">😄</span><span class="s1"> (jen vtip)&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="preview" class="email-preview"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div style="height:10px"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;strong&gt;Kód (HTML)&lt;/strong&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;textarea id="htmlOut" readonly&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// === 1) DOPLŇ URL IKON A LOGA (https) ===</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ICON_PHONE = "https://YOUR-DOMAIN.cz/icons/phone.png";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ICON_WEB <span class="Apple-converted-space">  </span>= "https://YOUR-DOMAIN.cz/icons/globe.png";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ICON_LINK<span class="Apple-converted-space">  </span>= "https://YOUR-DOMAIN.cz/icons/link.png";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ICON_EMAIL = "https://YOUR-DOMAIN.cz/icons/mail.png";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const LOGO_URL <span class="Apple-converted-space">  </span>= "https://YOUR-DOMAIN.cz/logo/synergy.png";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// Helpers</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const esc = (s="") =&gt; String(s)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.replaceAll("&amp;","&amp;amp;").replaceAll("&lt;","&amp;lt;")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.replaceAll("&gt;","&amp;gt;").replaceAll('"',"&amp;quot;");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const normalizeTel = (tel="") =&gt; tel.replace(/\s+/g, " ").trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const asTelHref = (tel="") =&gt; "tel:" + tel.replace(/[^\d+]/g,"");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>const ensureHttps = (url="") =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const u = url.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (!u) return "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (u.startsWith("http://") || u.startsWith("https://")) return u;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return "https://" + u.replace(/^\/+/, "");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function buildSignatureHTML(data){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const name<span class="Apple-converted-space">  </span>= esc(data.name);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const title = esc(data.title.toUpperCase()); // v designu je často CAPS</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const phone = esc(normalizeTel(data.phone));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const web1<span class="Apple-converted-space">  </span>= esc(data.web1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const web2<span class="Apple-converted-space">  </span>= esc(data.web2);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const email = esc(data.email);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const phoneHref = esc(asTelHref(data.phone));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const web1Href<span class="Apple-converted-space">  </span>= esc(ensureHttps(data.web1));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const web2Href<span class="Apple-converted-space">  </span>= esc(ensureHttps(data.web2));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const emailHref = "mailto:" + esc(data.email.trim());</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Layout: 2 sloupce + vertikální dělicí linka, podobně jako ve screenshotu</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return `</span></p>
+<p class="p1"><span class="s1">&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;line-height:1.2;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;td valign="top" style="padding:0 18px 0 0;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div style="font-size:22px;font-weight:800;color:#000;margin:0 0 6px 0;"&gt;${name}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div style="font-size:12px;font-weight:800;letter-spacing:.3px;color:#000;margin:0;"&gt;${title}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/td&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;td valign="top" style="padding:0 18px;border-left:2px solid #111;"&gt;&lt;/td&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;td valign="top" style="padding:0;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 10px 8px 0;"&gt;&lt;img src="${ICON_PHONE}" width="16" height="16" alt="" style="display:block;border:0;"/&gt;&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 0 8px 0;font-size:13px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="${phoneHref}" style="color:#111;text-decoration:none;font-weight:700;"&gt;${phone}&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 10px 8px 0;"&gt;&lt;img src="${ICON_WEB}" width="16" height="16" alt="" style="display:block;border:0;"/&gt;&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 0 8px 0;font-size:13px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="${web1Href}" style="color:#111;text-decoration:none;font-weight:700;"&gt;${web1}&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 10px 8px 0;"&gt;&lt;img src="${ICON_LINK}" width="16" height="16" alt="" style="display:block;border:0;"/&gt;&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 0 8px 0;font-size:13px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="${web2Href}" style="color:#111;text-decoration:none;font-weight:700;"&gt;${web2}&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0 10px 0 0;"&gt;&lt;img src="${ICON_EMAIL}" width="16" height="16" alt="" style="display:block;border:0;"/&gt;&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;td style="padding:0;font-size:13px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="${emailHref}" style="color:#111;text-decoration:none;font-weight:700;"&gt;${email}&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/table&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top:10px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="${LOGO_URL}" height="16" alt="Synergy Real Estate" style="display:block;border:0;"/&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/tr&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/table&gt;</span></p>
+<p class="p1"><span class="s1">`.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function getFormData(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>return {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>name:<span class="Apple-converted-space">  </span>document.getElementById("name").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>title: document.getElementById("title").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>phone: document.getElementById("phone").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>web1:<span class="Apple-converted-space">  </span>document.getElementById("web1").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>web2:<span class="Apple-converted-space">  </span>document.getElementById("web2").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>email: document.getElementById("email").value,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>function render(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const html = buildSignatureHTML(getFormData());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById("preview").innerHTML = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById("htmlOut").value = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>async function copyRich(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Kopíruje jako HTML do schránky (většina klientů pak vloží jako “rich” podpis)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const html = document.getElementById("htmlOut").value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const blob = new Blob([html], { type: "text/html" });</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const data = [new ClipboardItem({ "text/html": blob, "text/plain": new Blob([html], {type:"text/plain"}) })];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>await navigator.clipboard.write(data);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>alert("Podpis zkopírován. Vlož ho do editoru podpisu v e-mailu (CTRL/CMD+V).");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>async function copyHtml(){</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const html = document.getElementById("htmlOut").value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>await navigator.clipboard.writeText(html);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>alert("HTML zkopírováno.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("btnGen").addEventListener("click", render);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("btnCopyRich").addEventListener("click", copyRich);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("btnCopyHtml").addEventListener("click", copyHtml);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>render();</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
