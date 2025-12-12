@@ -128,14 +128,19 @@
     <input id="web1" value="www.synergyrealestate.cz" readonly>
 
     <label>Osobní web (volitelné)</label>
-    <input id="web2" value="www.honzastepanek.cz">
+    <input id="web2" placeholder="např. www.mujweb.cz">
 
     <label>Email</label>
     <input id="email" value="jan.stepanek@century21.cz">
 
     <div class="btns">
       <button class="btn-primary" id="btnGen">Vygenerovat</button>
-      <button class="btn-secondary" id="btnCopyRich">Kopírovat podpis</button>
+      <button class="btn-secondary" id="btnCopyRich">Označit podpis</button>
+    </div>
+
+    <div class="hint">
+      Klikni na „Označit podpis“, poté stiskni <strong>Cmd+C</strong> (Mac) nebo
+      <strong>Ctrl+C</strong> (Windows) a vlož podpis do nastavení emailu.
     </div>
   </div>
 
@@ -165,8 +170,18 @@
     const title = esc(titleInput.value).toUpperCase();
     const phone = esc(phoneInput.value);
     const web1  = esc(web1Input.value);
-    const web2  = esc(web2Input.value);
+    const web2Raw = web2Input.value.trim();
+    const web2  = esc(web2Raw);
     const email = esc(emailInput.value);
+
+    const personalWebRow = web2Raw
+      ? `
+        <tr>
+          <td style="padding-right:10px;">🔗</td>
+          <td><a href="${ensureHttps(web2)}">${web2}</a></td>
+        </tr>
+      `
+      : ``;
 
     const html = `
 <div style="font-family:Barlow, Arial, Helvetica, sans-serif;">
@@ -176,11 +191,7 @@
         <div style="font-size:22px;font-weight:600;margin-bottom:3px;">
           ${name}
         </div>
-        <div style="
-          font-size:14px;
-          font-weight:400;
-          letter-spacing:0.6px;
-        ">
+        <div style="font-size:14px;font-weight:400;letter-spacing:0.6px;">
           ${title}
         </div>
       </td>
@@ -195,10 +206,7 @@
             <td style="padding-right:10px;">🌐</td>
             <td><a href="${ensureHttps(web1)}">${web1}</a></td>
           </tr>
-          <tr>
-            <td style="padding-right:10px;">🔗</td>
-            <td><a href="${ensureHttps(web2)}">${web2}</a></td>
-          </tr>
+          ${personalWebRow}
           <tr>
             <td style="padding-right:10px;">✉️</td>
             <td><a href="mailto:${email}">${email}</a></td>
@@ -225,6 +233,12 @@
   const emailInput = document.getElementById("email");
 
   btnGen.onclick = render;
+  btnCopyRich.onclick = () => {
+    htmlOut.focus();
+    htmlOut.select();
+    alert("Podpis je označený. Zkopíruj ho pomocí Cmd+C / Ctrl+C a vlož do podpisu v emailu.");
+  };
+
   render();
 </script>
 
