@@ -3,10 +3,236 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Synergy test</title>
+  <title>Synergy – Email Signature Generator</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 24px;
+      background: #fafafa;
+      color: #111;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 12px 0 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #eee;
+      color: #111;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #555;
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+
+    .email-preview {
+      background: #fff;
+      border: 1px dashed #ccc;
+      border-radius: 12px;
+      padding: 14px;
+      overflow-x: auto;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 160px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 24px;">
-  <h1>✅ HTML se vykresluje správně</h1>
-  <p>Pokud vidíš tohle normálně, Pages fungují.</p>
+
+<body>
+
+<h2>Synergy Real Estate – Email Signature Generator</h2>
+
+<div class="wrap">
+
+  <!-- FORM -->
+  <div class="card">
+    <div class="row">
+      <div>
+        <label>Jméno a příjmení</label>
+        <input id="name" value="Honza Štěpánek">
+      </div>
+      <div>
+        <label>Pozice</label>
+        <input id="title" value="Ředitel společnosti">
+      </div>
+    </div>
+
+    <label>Telefon</label>
+    <input id="phone" value="+420 777 339 287">
+
+    <label>Web Synergy</label>
+    <input id="web1" value="www.synergyrealestate.cz">
+
+    <label>Osobní web</label>
+    <input id="web2" value="www.honzastepanek.cz">
+
+    <label>Email</label>
+    <input id="email" value="jan.stepanek@century21.cz">
+
+    <div class="btns">
+      <button class="btn-primary" onclick="render()">Vygenerovat</button>
+      <button class="btn-secondary" onclick="copyRich()">Kopírovat podpis</button>
+      <button class="btn-secondary" onclick="copyHtml()">Kopírovat HTML</button>
+    </div>
+
+    <div class="hint">
+      Tip: Pokud Outlook po vložení změní fonty, vkládej podpis přímo do editoru podpisů
+      (Outlook → Možnosti → Pošta → Podpisy).
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="card">
+    <strong>Náhled podpisu</strong>
+    <div id="preview" class="email-preview" style="margin-top:10px;"></div>
+
+    <strong>Kód (HTML)</strong>
+    <textarea id="htmlOut" readonly></textarea>
+  </div>
+
+</div>
+
+<script>
+  const ICON_PHONE = "https://via.placeholder.com/16";
+  const ICON_WEB   = "https://via.placeholder.com/16";
+  const ICON_LINK  = "https://via.placeholder.com/16";
+  const ICON_EMAIL = "https://via.placeholder.com/16";
+  const LOGO_URL   = "https://via.placeholder.com/120x20?text=SYNERGY";
+
+  function esc(text) {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function ensureHttps(url) {
+    if (!url) return "";
+    if (url.startsWith("http")) return url;
+    return "https://" + url;
+  }
+
+  function render() {
+    const name  = esc(document.getElementById("name").value);
+    const title = esc(document.getElementById("title").value.toUpperCase());
+    const phone = esc(document.getElementById("phone").value);
+    const web1  = esc(document.getElementById("web1").value);
+    const web2  = esc(document.getElementById("web2").value);
+    const email = esc(document.getElementById("email").value);
+
+    const html = `
+<table cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;">
+<tr>
+  <td style="padding-right:18px;">
+    <div style="font-size:22px;font-weight:800;">${name}</div>
+    <div style="font-size:12px;font-weight:700;">${title}</div>
+  </td>
+  <td style="border-left:2px solid #111;padding:0 18px;"></td>
+  <td>
+    <div style="font-size:13px;font-weight:700;">📞 ${phone}</div>
+    <div style="font-size:13px;font-weight:700;">
+      🌐 <a href="${ensureHttps(web1)}">${web1}</a>
+    </div>
+    <div style="font-size:13px;font-weight:700;">
+      🔗 <a href="${ensureHttps(web2)}">${web2}</a>
+    </div>
+    <div style="font-size:13px;font-weight:700;">
+      ✉️ <a href="mailto:${email}">${email}</a>
+    </div>
+    <div style="margin-top:10px;">
+      <img src="${LOGO_URL}" alt="Synergy">
+    </div>
+  </td>
+</tr>
+</table>`;
+
+    document.getElementById("preview").innerHTML = html;
+    document.getElementById("htmlOut").value = html;
+  }
+
+  async function copyRich() {
+    const html = document.getElementById("htmlOut").value;
+    const blob = new Blob([html], { type: "text/html" });
+    const data = [new ClipboardItem({ "text/html": blob })];
+    await navigator.clipboard.write(data);
+    alert("Podpis zkopírován.");
+  }
+
+  async function copyHtml() {
+    await navigator.clipboard.writeText(document.getElementById("htmlOut").value);
+    alert("HTML zkopírováno.");
+  }
+
+  render();
+</script>
+
 </body>
 </html>
