@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Synergy – Email Signature Generator</title>
 
-  <!-- Barlow font (UI + fallback for email clients) -->
+  <!-- Barlow font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -93,18 +93,11 @@
       font-size:12px;
       margin-top:8px;
     }
-    .inline-row{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-top:8px;
-      font-size:13px;
-      font-weight:700;
-    }
-    .muted{
-      font-size:12px;
-      color:#666;
-      margin-top:6px;
+    a{
+      color:#111;
+      text-decoration:none;
+      font-weight:400;
+      font-family:'Barlow', Arial, Helvetica, sans-serif;
     }
   </style>
 </head>
@@ -137,24 +130,12 @@
     <label>Osobní web (volitelné)</label>
     <input id="web2" value="www.honzastepanek.cz">
 
-    <div class="inline-row">
-      <input type="checkbox" id="showWeb2" checked style="width:auto;margin:0;">
-      <span>Zobrazit osobní web</span>
-    </div>
-    <div class="muted">Když vypneš, druhý web se do podpisu nevygeneruje.</div>
-
     <label>Email</label>
     <input id="email" value="jan.stepanek@century21.cz">
 
     <div class="btns">
       <button class="btn-primary" id="btnGen">Vygenerovat</button>
       <button class="btn-secondary" id="btnCopyRich">Kopírovat podpis</button>
-      <button class="btn-secondary" id="btnCopyHtml">Kopírovat HTML</button>
-    </div>
-
-    <div class="hint">
-      Tip: Pokud Outlook mění styl po vložení, vkládej podpis přímo do editoru podpisů
-      (Outlook → Možnosti → Pošta → Podpisy).
     </div>
   </div>
 
@@ -162,22 +143,12 @@
   <div class="card">
     <strong>Náhled podpisu</strong>
     <div id="preview" class="email-preview" style="margin-top:10px;"></div>
-
-    <div style="height:10px;"></div>
-    <strong>Kód (HTML)</strong>
     <textarea id="htmlOut" readonly></textarea>
   </div>
 
 </div>
 
 <script>
-  // ICONS
-  const ICON_PHONE = "./icons/phone.png";
-  const ICON_WEB   = "./icons/web.png";
-  const ICON_LINK  = "./icons/link.png";
-  const ICON_EMAIL = "./icons/mail.png";
-
-  // BANNER (jednotný pro všechny)
   const BANNER_URL = "https://semrad-olii.github.io/synergy-podpis/synergy-banner.png";
 
   const esc = s => String(s)
@@ -191,40 +162,38 @@
 
   function render(){
     const name  = esc(nameInput.value);
-    const title = esc(titleInput.value.toUpperCase());
+    const title = esc(titleInput.value);
     const phone = esc(phoneInput.value);
     const web1  = esc(web1Input.value);
     const web2  = esc(web2Input.value);
     const email = esc(emailInput.value);
-    const showWeb2 = showWeb2Input.checked;
 
     const html = `
 <div style="font-family:Barlow, Arial, Helvetica, sans-serif;">
   <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
     <tr>
       <td style="padding-right:18px;">
-        <div style="font-size:22px;font-weight:800;margin-bottom:3px;">${name}</div>
-        <div style="font-size:12px;font-weight:800;">${title}</div>
+        <div style="font-size:22px;font-weight:600;margin-bottom:3px;">${name}</div>
+        <div style="font-size:12px;font-weight:400;">${title}</div>
       </td>
       <td style="border-left:2px solid #111;padding:0 18px;"></td>
       <td>
         <table cellpadding="0" cellspacing="0">
           <tr>
-            <td style="padding-right:10px;"><img src="${ICON_PHONE}" width="16"></td>
-            <td><a href="${asTelHref(phone)}">${phone}</a></td>
+            <td style="padding-right:10px;">📞</td>
+            <td style="font-weight:400;"><a href="${asTelHref(phone)}">${phone}</a></td>
           </tr>
           <tr>
-            <td style="padding-right:10px;"><img src="${ICON_WEB}" width="16"></td>
-            <td><a href="${ensureHttps(web1)}">${web1}</a></td>
+            <td style="padding-right:10px;">🌐</td>
+            <td style="font-weight:400;"><a href="${ensureHttps(web1)}">${web1}</a></td>
           </tr>
-          ${showWeb2 ? `
           <tr>
-            <td style="padding-right:10px;"><img src="${ICON_LINK}" width="16"></td>
-            <td><a href="${ensureHttps(web2)}">${web2}</a></td>
-          </tr>` : ``}
+            <td style="padding-right:10px;">🔗</td>
+            <td style="font-weight:400;"><a href="${ensureHttps(web2)}">${web2}</a></td>
+          </tr>
           <tr>
-            <td style="padding-right:10px;"><img src="${ICON_EMAIL}" width="16"></td>
-            <td><a href="mailto:${email}">${email}</a></td>
+            <td style="padding-right:10px;">✉️</td>
+            <td style="font-weight:400;"><a href="mailto:${email}">${email}</a></td>
           </tr>
         </table>
       </td>
@@ -246,16 +215,8 @@
   const web1Input = document.getElementById("web1");
   const web2Input = document.getElementById("web2");
   const emailInput = document.getElementById("email");
-  const showWeb2Input = document.getElementById("showWeb2");
 
   btnGen.onclick = render;
-  btnCopyHtml.onclick = () => navigator.clipboard.writeText(htmlOut.value);
-  btnCopyRich.onclick = async () => {
-    const blob = new Blob([htmlOut.value], { type: "text/html" });
-    await navigator.clipboard.write([new ClipboardItem({ "text/html": blob })]);
-    alert("Podpis zkopírován.");
-  };
-
   render();
 </script>
 
