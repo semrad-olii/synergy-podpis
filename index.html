@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Synergy – Email Signature Generator</title>
 
-  <!-- Barlow font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -85,7 +84,7 @@
     }
     textarea{
       width:100%;
-      min-height:180px;
+      min-height:200px;
       border:1px solid #ddd;
       border-radius:12px;
       padding:12px;
@@ -99,6 +98,12 @@
       font-weight:400;
       font-family:'Barlow', Arial, Helvetica, sans-serif;
     }
+    .section-title{
+      margin-top:14px;
+      font-size:12px;
+      font-weight:800;
+      color:#111;
+    }
   </style>
 </head>
 
@@ -108,7 +113,6 @@
 
 <div class="wrap">
 
-  <!-- FORM -->
   <div class="card">
     <div class="row">
       <div>
@@ -133,6 +137,17 @@
     <label>Email</label>
     <input id="email" value="jan.stepanek@century21.cz">
 
+    <div class="section-title">Asistentka (volitelné)</div>
+
+    <label>Jméno a příjmení asistentky</label>
+    <input id="asstName" placeholder="např. Jana Nováková">
+
+    <label>Pozice asistentky</label>
+    <input id="asstTitle" placeholder="např. Asistentka">
+
+    <label>Telefon asistentky</label>
+    <input id="asstPhone" placeholder="např. +420 777 111 222">
+
     <div class="btns">
       <button class="btn-primary" id="btnGen">Vygenerovat</button>
       <button class="btn-secondary" id="btnCopyRich">Označit podpis</button>
@@ -140,11 +155,11 @@
 
     <div class="hint">
       Klikni na „Označit podpis“, poté stiskni <strong>Cmd+C</strong> (Mac) nebo
-      <strong>Ctrl+C</strong> (Windows) a vlož podpis do nastavení emailu.
+      <strong>Ctrl+C</strong> (Windows) a vlož podpis do nastavení emailu.<br>
+      Pokud nevyplníš osobní web nebo asistentku, dané řádky se automaticky nezobrazí.
     </div>
   </div>
 
-  <!-- PREVIEW -->
   <div class="card">
     <strong>Náhled podpisu</strong>
     <div id="preview" class="email-preview" style="margin-top:10px;"></div>
@@ -174,6 +189,15 @@
     const web2  = esc(web2Raw);
     const email = esc(emailInput.value);
 
+    // Assistant (optional)
+    const asstNameRaw  = asstNameInput.value.trim();
+    const asstTitleRaw = asstTitleInput.value.trim();
+    const asstPhoneRaw = asstPhoneInput.value.trim();
+
+    const asstName  = esc(asstNameRaw);
+    const asstTitle = esc(asstTitleRaw);
+    const asstPhone = esc(asstPhoneRaw);
+
     const personalWebRow = web2Raw
       ? `
         <tr>
@@ -182,6 +206,24 @@
         </tr>
       `
       : ``;
+
+    // show assistant block only if ANY field is filled
+    const showAsst = Boolean(asstNameRaw || asstTitleRaw || asstPhoneRaw);
+
+    const asstBlock = showAsst ? `
+      <div style="margin-top:14px;font-family:Barlow, Arial, Helvetica, sans-serif;">
+        ${asstNameRaw ? `<div style="font-size:16px;font-weight:600;margin:0 0 3px 0;">${asstName}</div>` : ``}
+        ${asstTitleRaw ? `<div style="font-size:13px;font-weight:400;letter-spacing:0.3px;margin:0 0 6px 0;">${asstTitle}</div>` : ``}
+        ${asstPhoneRaw ? `
+          <table cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="padding-right:10px;">📞</td>
+              <td><a href="${asTelHref(asstPhone)}">${asstPhone}</a></td>
+            </tr>
+          </table>
+        ` : ``}
+      </div>
+    ` : ``;
 
     const html = `
 <div style="font-family:Barlow, Arial, Helvetica, sans-serif;">
@@ -194,8 +236,12 @@
         <div style="font-size:14px;font-weight:400;letter-spacing:0.6px;">
           ${title}
         </div>
+
+        ${asstBlock}
       </td>
+
       <td style="border-left:2px solid #111;padding:0 18px;"></td>
+
       <td>
         <table cellpadding="0" cellspacing="0">
           <tr>
@@ -232,12 +278,23 @@
   const web2Input  = document.getElementById("web2");
   const emailInput = document.getElementById("email");
 
+  const asstNameInput  = document.getElementById("asstName");
+  const asstTitleInput = document.getElementById("asstTitle");
+  const asstPhoneInput = document.getElementById("asstPhone");
+
   btnGen.onclick = render;
+
   btnCopyRich.onclick = () => {
     htmlOut.focus();
     htmlOut.select();
     alert("Podpis je označený. Zkopíruj ho pomocí Cmd+C / Ctrl+C a vlož do podpisu v emailu.");
   };
+
+  // live updates
+  [
+    nameInput, titleInput, phoneInput, web2Input, emailInput,
+    asstNameInput, asstTitleInput, asstPhoneInput
+  ].forEach(el => el.addEventListener("input", render));
 
   render();
 </script>
